@@ -506,6 +506,7 @@ declare namespace Plyr {
         enabled?: boolean;
         fallback?: boolean;
         allowAudio?: boolean;
+        customControl?:Function;
     }
 
     interface CaptionOptions {
@@ -562,6 +563,7 @@ declare namespace Plyr {
     }
 
     type TrackKind = 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
+
     interface Track {
         /**
          * Indicates how the text track is meant to be used

@@ -294,8 +294,12 @@ class Plyr {
         this.listeners.global();
 
         // Setup fullscreen
-        this.fullscreen = new Fullscreen(this);
-
+        const customFullScreenControl = this.config.fullscreen.customControl;
+        if (typeof customFullScreenControl === 'function')
+            // eslint-disable-next-line new-cap
+            this.fullscreen = new customFullScreenControl(this);
+        else
+            this.fullscreen = new Fullscreen(this);
         // Setup ads if provided
         if (this.config.ads.enabled) {
             this.ads = new Ads(this);
@@ -874,7 +878,8 @@ class Plyr {
             return;
         }
 
-        ui.setPoster.call(this, input, false).catch(() => {});
+        ui.setPoster.call(this, input, false).catch(() => {
+        });
     }
 
     /**
